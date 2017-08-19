@@ -1,3 +1,23 @@
+Skip to content
+This repository
+Search
+Pull requests
+Issues
+Marketplace
+Gist
+ @newbs0001
+ Sign out
+ Watch 0
+  Star 0
+  Fork 944 newbs0001/MusicBot
+forked from Just-Some-Bots/MusicBot
+ Code  Pull requests 0  Projects 0  Wiki  Settings Insights 
+Branch: master Find file Copy pathMusicBot/musicbot/bot.py
+109fac5  on 5 Aug 2016
+@imayhaveborkedit imayhaveborkedit Fix for discord.py breaking change
+6 contributors @imayhaveborkedit @jhgg @fjking171 @SexualRhinoceros @jaydenkieran @eDavidT
+RawBlameHistory     
+2018 lines (1550 sloc)  77.1 KB
 import os
 import sys
 import time
@@ -724,7 +744,6 @@ class MusicBot(discord.Client):
         """
         Usage:
             {command_prefix}help [command]
-
         Prints a help message.
         If a command is specified, it prints a help message for that command.
         Otherwise, it lists the available commands.
@@ -744,7 +763,7 @@ class MusicBot(discord.Client):
                 return Response("No such command", delete_after=10)
 
         else:
-            helpmsg = "**Commands**\n```"
+            helpmsg = "**Wtf**\n```"
             commands = []
 
             for att in dir(self):
@@ -754,7 +773,7 @@ class MusicBot(discord.Client):
 
             helpmsg += ", ".join(commands)
             helpmsg += "```"
-            helpmsg += "https://github.com/SexualRhinoceros/MusicBot/wiki/Commands-list"
+            helpmsg += "Newbs | Michael | 2017"
 
             return Response(helpmsg, reply=True, delete_after=60)
 
@@ -762,7 +781,6 @@ class MusicBot(discord.Client):
         """
         Usage:
             {command_prefix}blacklist [ + | - | add | remove ] @UserName [@UserName2 ...]
-
         Add or remove users to the blacklist.
         Blacklisted users are forbidden from using bot commands.
         """
@@ -809,7 +827,6 @@ class MusicBot(discord.Client):
         """
         Usage:
             {command_prefix}id [@user]
-
         Tells the user their id or the id of another user.
         """
         if not user_mentions:
@@ -823,7 +840,6 @@ class MusicBot(discord.Client):
         """
         Usage:
             {command_prefix}joinserver invite_link
-
         Asks the bot to join a server.  Note: Bot accounts cannot use invite links.
         """
 
@@ -847,7 +863,6 @@ class MusicBot(discord.Client):
         Usage:
             {command_prefix}play song_link
             {command_prefix}play text to search for
-
         Adds the song to the playlist.  If a link is not provided, the first
         result from a youtube search is added to the queue.
         """
@@ -1132,7 +1147,6 @@ class MusicBot(discord.Client):
         """
         Usage:
             {command_prefix}search [service] [number] query
-
         Searches a service for a video and adds it to the queue.
         - service: any one of the following services:
             - youtube (yt) (default if unspecified)
@@ -1262,7 +1276,6 @@ class MusicBot(discord.Client):
         """
         Usage:
             {command_prefix}np
-
         Displays the current song in chat.
         """
 
@@ -1293,7 +1306,6 @@ class MusicBot(discord.Client):
         """
         Usage:
             {command_prefix}summon
-
         Call the bot to the summoner's voice channel.
         """
 
@@ -1334,7 +1346,6 @@ class MusicBot(discord.Client):
         """
         Usage:
             {command_prefix}pause
-
         Pauses playback of the current song.
         """
 
@@ -1348,7 +1359,6 @@ class MusicBot(discord.Client):
         """
         Usage:
             {command_prefix}resume
-
         Resumes playback of a paused song.
         """
 
@@ -1362,7 +1372,6 @@ class MusicBot(discord.Client):
         """
         Usage:
             {command_prefix}shuffle
-
         Shuffles the playlist.
         """
 
@@ -1384,7 +1393,6 @@ class MusicBot(discord.Client):
         """
         Usage:
             {command_prefix}clear
-
         Clears the playlist.
         """
 
@@ -1395,7 +1403,6 @@ class MusicBot(discord.Client):
         """
         Usage:
             {command_prefix}skip
-
         Skips the current song when enough votes are cast, or by the bot owner.
         """
 
@@ -1465,7 +1472,6 @@ class MusicBot(discord.Client):
         """
         Usage:
             {command_prefix}volume (+/-)[volume]
-
         Sets the playback volume. Accepted values are from 1 to 100.
         Putting + or - before the volume will make the volume change relative to the current volume.
         """
@@ -1507,7 +1513,6 @@ class MusicBot(discord.Client):
         """
         Usage:
             {command_prefix}queue
-
         Prints the current song queue.
         """
 
@@ -1555,7 +1560,6 @@ class MusicBot(discord.Client):
         """
         Usage:
             {command_prefix}clean [range]
-
         Removes up to [range] messages the bot has posted in chat. Default: 50, Max: 1000
         """
 
@@ -1613,7 +1617,6 @@ class MusicBot(discord.Client):
         """
         Usage:
             {command_prefix}pldump url
-
         Dumps the individual urls of a playlist
         """
 
@@ -1658,7 +1661,6 @@ class MusicBot(discord.Client):
         """
         Usage:
             {command_prefix}listids [categories]
-
         Lists the ids for various things.  Categories are:
            all, users, roles, channels
         """
@@ -1716,7 +1718,6 @@ class MusicBot(discord.Client):
         """
         Usage:
             {command_prefix}perms
-
         Sends the user a list of their permissions.
         """
 
@@ -1737,7 +1738,6 @@ class MusicBot(discord.Client):
         """
         Usage:
             {command_prefix}setname name
-
         Changes the bot's username.
         Note: This operation is limited by discord to twice per hour.
         """
@@ -1756,7 +1756,6 @@ class MusicBot(discord.Client):
         """
         Usage:
             {command_prefix}setnick nick
-
         Changes the bot's nickname.
         """
 
@@ -1777,7 +1776,6 @@ class MusicBot(discord.Client):
         """
         Usage:
             {command_prefix}setavatar [url]
-
         Changes the bot's avatar.
         Attaching a file and leaving the url parameter blank also works.
         """
@@ -2015,3 +2013,15 @@ class MusicBot(discord.Client):
 if __name__ == '__main__':
     bot = MusicBot()
     bot.run()
+© 2017 GitHub, Inc.
+Terms
+Privacy
+Security
+Status
+Help
+Contact GitHub
+API
+Training
+Shop
+Blog
+About
